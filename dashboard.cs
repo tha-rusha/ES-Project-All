@@ -77,6 +77,66 @@ namespace es_all
             con = new SqlConnection(conString);
             con.Open();
 
+            //dashboard
+
+            SqlCommand customerCountQ = new SqlCommand("SELECT * FROM customer", con);
+            SqlDataReader customerRead = customerCountQ.ExecuteReader();
+
+            int customerCount = 0;
+
+            while (customerRead.Read())
+            {
+                customerCount++;
+            }
+            label13.Text = "";
+            label13.Text = customerCount.ToString();
+
+            customerRead.Close();
+
+            SqlCommand companyCountQ = new SqlCommand("SELECT * FROM company", con);
+            SqlDataReader companyRead = companyCountQ.ExecuteReader();
+
+            int companyCount = 0;
+
+            while (companyRead.Read())
+            {
+                companyCount++;
+            }
+            label14.Text = "";
+            label14.Text = companyCount.ToString();
+
+            companyRead.Close();
+
+            SqlCommand appointmentCountQ = new SqlCommand("SELECT * FROM appointment", con);
+            SqlDataReader appointmentRead = appointmentCountQ.ExecuteReader();
+
+            int appointmentCount = 0;
+
+            while (appointmentRead.Read())
+            {
+                appointmentCount++;
+            }
+            label15.Text = "";
+            label15.Text = appointmentCount.ToString();
+
+            appointmentRead.Close();
+
+            SqlCommand opportunityCountQ = new SqlCommand("SELECT * FROM opportunity", con);
+            SqlDataReader opportunityRead = opportunityCountQ.ExecuteReader();
+
+            int opportunityCount = 0;
+
+            while (opportunityRead.Read())
+            {
+                opportunityCount++;
+            }
+            label16.Text = "";
+            label16.Text = opportunityCount.ToString();
+
+            opportunityRead.Close();
+
+            //
+
             SqlCommand loadCustomers = new SqlCommand(customerQuery, con);
             SqlDataAdapter customerAdapter = new SqlDataAdapter(loadCustomers);
             DataSet customerDataSet= new DataSet();
@@ -409,6 +469,11 @@ namespace es_all
         }
 
         private void tabPage7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_2(object sender, EventArgs e)
         {
 
         }

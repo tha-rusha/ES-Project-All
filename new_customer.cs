@@ -97,5 +97,29 @@ namespace es_all
             }
             selectedCustomer.Close();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string fName = textBox5.Text;
+            string lName = textBox1.Text;
+            string email = textBox2.Text;
+            string mobile = textBox3.Text;
+            string company = comboBox2.Text;
+
+            SqlCommand saveCompany = new SqlCommand($"INSERT INTO customer(firstName,lastName,email,mobile,company) VALUES('{fName}','{lName}','{email}','{mobile}','{company}')", con);
+            saveCompany.ExecuteNonQuery();
+            textBox5.Clear();
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+
+
+            MessageBox.Show("New customer added");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
