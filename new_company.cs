@@ -36,6 +36,16 @@ namespace es_all
                 comboBox2.Items.Add(catDataReader["category"].ToString());
             }
             catDataReader.Close();
+
+            //Select id
+            SqlCommand loadId = new SqlCommand("SELECT id FROM company", con);
+            SqlDataReader idDataReader = loadId.ExecuteReader();
+
+            while (idDataReader.Read())
+            {
+                comboBox1.Items.Add(idDataReader["id"]);
+            }
+            idDataReader.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -75,6 +85,25 @@ namespace es_all
             textBox1.Clear();
             textBox2.Clear();
             textBox3.Clear();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //load data when selected id is change in customer
+
+            int selectedId = int.Parse(comboBox1.Text);
+            SqlCommand loadCompany = new SqlCommand($"SELECT * FROM company WHERE id = {selectedId}", con);
+            SqlDataReader selectedCompany = loadCompany.ExecuteReader();
+
+            while (selectedCompany.Read())
+            {
+                textBox5.Text = selectedCompany[1].ToString();
+                textBox1.Text = selectedCompany[2].ToString();
+                textBox2.Text = selectedCompany[3].ToString();
+                textBox3.Text = selectedCompany[4].ToString();
+                comboBox2.Text = selectedCompany[5].ToString();
+            }
+            selectedCompany.Close();
         }
     }
 }

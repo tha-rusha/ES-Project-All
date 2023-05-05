@@ -9,6 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace es_all
@@ -46,6 +47,16 @@ namespace es_all
             }
             customerDataReader.Close();
 
+            //Select id
+            SqlCommand loadId = new SqlCommand("SELECT id FROM appointment", con);
+            SqlDataReader idDataReader = loadId.ExecuteReader();
+
+            while (idDataReader.Read())
+            {
+                comboBox3.Items.Add(idDataReader["id"]);
+            }
+            idDataReader.Close();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -61,6 +72,8 @@ namespace es_all
             textBox1.Clear();
             textBox4.Clear();
 
+            //comment
+
             MessageBox.Show("New Appointmet added");
         }
 
@@ -69,6 +82,25 @@ namespace es_all
             textBox3.Clear();
             textBox1.Clear();
             textBox4.Clear();
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //load data when selected id is change in customer
+
+            int selectedId = int.Parse(comboBox3.Text);
+            SqlCommand loadAppointment = new SqlCommand($"SELECT * FROM appointment WHERE id = {selectedId}", con);
+            SqlDataReader selectedAppointment = loadAppointment.ExecuteReader();
+
+            while (selectedAppointment.Read())
+            {
+                textBox3.Text = selectedAppointment[1].ToString();
+                textBox1.Text = selectedAppointment[2].ToString();
+                dateTimePicker1.Text = selectedAppointment[3].ToString();
+                comboBox1.Text = selectedAppointment[4].ToString();
+                textBox4.Text = selectedAppointment[5].ToString();  
+            }
+            selectedAppointment.Close();
         }
     }
 }

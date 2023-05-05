@@ -28,7 +28,7 @@ namespace es_all
             String person = comboBox2.Text;
             String probability = textBox3.Text;
             String description = textBox4.Text;
-            SqlCommand saveopportunity = new SqlCommand($"INSERT INTO opportunity(referanceNumber,company,person,probability,description)VALUES('{referenceNumber}','{company}','{person}','{probability}','{probability}')", con);
+            SqlCommand saveopportunity = new SqlCommand($"INSERT INTO opportunity(referanceNumber,company,person,probability,description)VALUES('{referenceNumber}','{company}','{person}','{probability}','{description}')", con);
             saveopportunity.ExecuteNonQuery();
             textBox5.Clear();
             textBox3.Clear();
@@ -61,6 +61,16 @@ namespace es_all
             }
             customerDataReader.Close();
 
+            //Select id
+            SqlCommand loadId = new SqlCommand("SELECT id FROM opportunity", con);
+            SqlDataReader idDataReader = loadId.ExecuteReader();
+
+            while (idDataReader.Read())
+            {
+                comboBox3.Items.Add(idDataReader["id"]);
+            }
+            idDataReader.Close();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -68,6 +78,40 @@ namespace es_all
             textBox5.Clear();
             textBox3.Clear();
             textBox4.Clear();
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //load data when selected id is change in Opportunity
+
+            int selectedId = int.Parse(comboBox3.Text);
+            SqlCommand loadOpportunity = new SqlCommand($"SELECT * FROM opportunity WHERE id = {selectedId}", con);
+            SqlDataReader selectedOpportunity = loadOpportunity.ExecuteReader();
+
+            while (selectedOpportunity.Read())
+            {
+                textBox5.Text = selectedOpportunity[1].ToString();
+                comboBox1.Text = selectedOpportunity[2].ToString();
+                comboBox2.Text = selectedOpportunity[3].ToString();
+                textBox3.Text = selectedOpportunity[4].ToString();
+                textBox4.Text = selectedOpportunity[5].ToString();
+            }
+            selectedOpportunity.Close();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

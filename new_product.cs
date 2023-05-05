@@ -44,6 +44,16 @@ namespace es_all
             con = new SqlConnection(conString);
             con.Open();
 
+            //Select id
+            SqlCommand loadId = new SqlCommand("SELECT id FROM product", con);
+            SqlDataReader idDataReader = loadId.ExecuteReader();
+
+            while (idDataReader.Read())
+            {
+                comboBox1.Items.Add(idDataReader["id"]);
+            }
+            idDataReader.Close();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -57,6 +67,29 @@ namespace es_all
         private void button3_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //load data when selected id is change in product
+
+            int selectedId = int.Parse(comboBox1.Text);
+            SqlCommand loadProduct = new SqlCommand($"SELECT * FROM product WHERE id = {selectedId}", con);
+            SqlDataReader selectedProduct = loadProduct.ExecuteReader();
+
+            while (selectedProduct.Read())
+            {
+                textBox5.Text = selectedProduct[1].ToString();
+                textBox1.Text = selectedProduct[2].ToString();
+                textBox2.Text = selectedProduct[3].ToString();
+                textBox3.Text = selectedProduct[4].ToString();
+            }
+            selectedProduct.Close();
         }
     }
 }
