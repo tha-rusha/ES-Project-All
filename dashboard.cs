@@ -135,7 +135,19 @@ namespace es_all
 
             opportunityRead.Close();
 
+            //This moth appointments
+             string thisAppoQueary = "SELECT * FROM appointment";
+            SqlCommand loadThisAppointment = new SqlCommand(thisAppoQueary, con);
+            SqlDataAdapter thisAppointmentAdapter = new SqlDataAdapter(loadThisAppointment);
+            DataSet thisAppointmentDataSet = new DataSet();
+            thisAppointmentAdapter.Fill(thisAppointmentDataSet);
+
+            dataGridView7.DataSource = thisAppointmentDataSet.Tables[0];
             //
+
+            //End dashboad
+
+
 
             SqlCommand loadCustomers = new SqlCommand(customerQuery, con);
             SqlDataAdapter customerAdapter = new SqlDataAdapter(loadCustomers);
