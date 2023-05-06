@@ -38,7 +38,18 @@ namespace es_all
 
         private void button3_Click(object sender, EventArgs e)
         {
+            string fName = textBox5.Text;
+            string lName = textBox1.Text;
+            string email = textBox2.Text;
+            string mobile = textBox3.Text;
+            string company = comboBox2.Text;
 
+            int selectedId = int.Parse(comboBox1.Text);
+
+            SqlCommand update = new SqlCommand($"UPDATE customer SET firstName = '{fName}', lastName= '{email}',mobile='{mobile}',company='{company}' WHERE id = '{selectedId}'",con);
+            update.ExecuteNonQuery();
+
+            MessageBox.Show("Record update successully!");
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -120,6 +131,34 @@ namespace es_all
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int selectedId = int.Parse(comboBox1.Text);
+            SqlCommand delete = new SqlCommand($"DELETE FROM customer WHERE id='{selectedId}'", con);
+
+            DialogResult dialogResult = MessageBox.Show(
+                "Are you sure want to delete?", "Delete", MessageBoxButtons.YesNo
+                );
+            if(dialogResult == DialogResult.Yes )
+            {
+                SqlDataReader reader = delete.ExecuteReader();
+                reader.Close();
+
+                MessageBox.Show("Record deleted!");
+
+                this.Close();
+            }
+            else
+            {
+
+            }
         }
     }
 }

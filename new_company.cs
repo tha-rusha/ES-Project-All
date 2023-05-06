@@ -105,5 +105,44 @@ namespace es_all
             }
             selectedCompany.Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string company = textBox5.Text;
+            string address = textBox1.Text;
+            string email = textBox2.Text;
+            string telephone = textBox3.Text;
+            string category = comboBox2.Text;
+
+            int selectedId = int.Parse(comboBox1.Text);
+
+            SqlCommand update = new SqlCommand($"UPDATE company SET companyName = '{company}', address= '{address}',email='{email}',category='{category}' WHERE id = '{selectedId}'", con);
+            update.ExecuteNonQuery();
+
+            MessageBox.Show("Record update successully!");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int selectedId = int.Parse(comboBox1.Text);
+            SqlCommand delete = new SqlCommand($"DELETE FROM company WHERE id='{selectedId}'", con);
+
+            DialogResult dialogResult = MessageBox.Show(
+                "Are you sure want to delete?", "Delete", MessageBoxButtons.YesNo
+                );
+            if (dialogResult == DialogResult.Yes)
+            {
+                SqlDataReader reader = delete.ExecuteReader();
+                reader.Close();
+
+                MessageBox.Show("Record deleted!");
+
+                this.Close();
+            }
+            else
+            {
+
+            }
+        }
     }
 }

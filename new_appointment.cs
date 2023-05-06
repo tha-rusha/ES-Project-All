@@ -102,5 +102,44 @@ namespace es_all
             }
             selectedAppointment.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int selectedId = int.Parse(comboBox3.Text);
+            SqlCommand delete = new SqlCommand($"DELETE FROM appointment WHERE id='{selectedId}'", con);
+
+            DialogResult dialogResult = MessageBox.Show(
+                "Are you sure want to delete?", "Delete", MessageBoxButtons.YesNo
+                );
+            if (dialogResult == DialogResult.Yes)
+            {
+                SqlDataReader reader = delete.ExecuteReader();
+                reader.Close();
+
+                MessageBox.Show("Record deleted!");
+
+                this.Close();
+            }
+            else
+            {
+
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string refNum = textBox3.Text;
+            string venue = textBox1.Text;
+            DateTime dateTime = dateTimePicker1.Value.Date;
+            string person = comboBox1.Text;
+            string topic = textBox4.Text;
+
+            int selectedId = int.Parse(comboBox3.Text);
+
+            SqlCommand update = new SqlCommand($"UPDATE appointment SET referanceNumber = '{refNum}', venue= '{venue}',dateTime='{dateTime}',person='{person}',topic='{topic}' WHERE id = '{selectedId}'", con);
+            update.ExecuteNonQuery();
+
+            MessageBox.Show("Record update successully!");
+        }
     }
 }

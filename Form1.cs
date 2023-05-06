@@ -33,7 +33,7 @@ namespace es_all
 
             dashboard dashboard = new dashboard();
             dashboard.Show();
-            /*
+            
             con = new SqlConnection(conString);
             con.Open();
 
@@ -60,21 +60,36 @@ namespace es_all
             {
                 MessageBox.Show("Connection is "+conMessage+".\n Welcome "+username+"!");
 
-                dashboard dashboard = new dashboard();
-                dashboard.Show();
+               // dashboard dashboard = new dashboard();
+                //dashboard.Show();
             }
             else
             {
                 MessageBox.Show("Connection is " + conMessage + ".\n Login failed!");
             }
 
-            */
+
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             register register = new register();
             register.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -46,36 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="appoiment.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="appoiment.Designer.cs">
-      <DependentUpon>appoiment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="best_product.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="best_product.Designer.cs">
-      <DependentUpon>best_product.cs</DependentUpon>
-    </Compile>
-    <Compile Include="category.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="category.Designer.cs">
-      <DependentUpon>category.cs</DependentUpon>
-    </Compile>
-    <Compile Include="company_details.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="company_details.Designer.cs">
-      <DependentUpon>company_details.cs</DependentUpon>
-    </Compile>
-    <Compile Include="customer_details.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="customer_details.Designer.cs">
-      <DependentUpon>customer_details.cs</DependentUpon>
-    </Compile>
     <Compile Include="dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,12 +88,6 @@
     <Compile Include="new_product.Designer.cs">
       <DependentUpon>new_product.cs</DependentUpon>
     </Compile>
-    <Compile Include="opportunity.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="opportunity.Designer.cs">
-      <DependentUpon>opportunity.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="register.cs">
@@ -132,21 +96,6 @@
     <Compile Include="register.Designer.cs">
       <DependentUpon>register.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="appoiment.resx">
-      <DependentUpon>appoiment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="best_product.resx">
-      <DependentUpon>best_product.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="category.resx">
-      <DependentUpon>category.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="company_details.resx">
-      <DependentUpon>company_details.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="customer_details.resx">
-      <DependentUpon>customer_details.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="dashboard.resx">
       <DependentUpon>dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,9 +116,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="new_product.resx">
       <DependentUpon>new_product.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="opportunity.resx">
-      <DependentUpon>opportunity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

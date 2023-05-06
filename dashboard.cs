@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -136,7 +137,10 @@ namespace es_all
             opportunityRead.Close();
 
             //This moth appointments
-             string thisAppoQueary = "SELECT * FROM appointment";
+
+            string currentMonth = DateTime.Now.ToString("MM",CultureInfo.InvariantCulture);
+
+            string thisAppoQueary = $"SELECT * FROM appointment WHERE MONTH(dateTime) ={currentMonth} ";
             SqlCommand loadThisAppointment = new SqlCommand(thisAppoQueary, con);
             SqlDataAdapter thisAppointmentAdapter = new SqlDataAdapter(loadThisAppointment);
             DataSet thisAppointmentDataSet = new DataSet();
@@ -144,6 +148,16 @@ namespace es_all
 
             dataGridView7.DataSource = thisAppointmentDataSet.Tables[0];
             //
+
+            //Top oppt
+
+            string topOppotunities = $"SELECT * FROM opportunity WHERE probability > 50";
+            SqlCommand loadtopOppotunities = new SqlCommand(topOppotunities, con);
+            SqlDataAdapter topopportunityAdapter = new SqlDataAdapter(loadtopOppotunities);
+            DataSet topoppertunityDataset = new DataSet();
+            topopportunityAdapter.Fill(topoppertunityDataset);
+
+            dataGridView8.DataSource = topoppertunityDataset.Tables[0];
 
             //End dashboad
 
@@ -486,6 +500,47 @@ namespace es_all
         }
 
         private void label1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView8_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label5_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 0;
+            button1.BackColor = Color.White;
+            button2.BackColor = Color.White;
+            button3.BackColor = Color.White;
+            button4.BackColor = Color.White;
+            button5.BackColor = Color.White;
+            button6.BackColor = Color.White;
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
         {
 
         }
